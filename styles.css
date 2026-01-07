@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins%3Awght%40100%3B200%3B300%3B400%3B500%3B600&display=swap%27%29%3B');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+/* Base body styles for all pages */
+body{
+    width: 100%;
+    overflow-x: hidden;
+    color: white;
+}
+
+/* Home page specific body styles */
+body.home-page{
+    background-color: black;
+}
+
+/* My Works page specific body styles */
+body.myworks-page{
+    background-color: #1E1E1E;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 9%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Base logo styles - can be overridden per page */
+.logo{
+    font-size: 2rem;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+/* Home page navigation colors */
+body.home-page .logo{
+    color: black;
+}
+
+body.home-page header.scrolled .logo{
+    color: white;
+}
+
+nav{
+    display: flex;
+    gap: 2.5rem;
+}
+
+/* Base nav link styles */
+nav a{
+    font-size: 1.6rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+/* Home page navigation colors */
+body.home-page nav a{
+    color: black;
+}
+
+body.home-page header.scrolled nav a{
+    color: white;
+}
+
+body.home-page header.scrolled nav a:hover{
+    color: pink;
+    opacity: 1.0;
+}
+
+body.home-page nav a:hover,
+body.home-page nav a.active{
+    opacity: 0.7;
+    color: white;
+}
+
+/* Hero Section - Pink Background */
+.hero{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #FFB6C1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 8rem 2rem 4rem;
+}
+
+.hero-content{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.hero-greeting{
+    font-size: 2.5rem;
+    color: black;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.hero-title{
+    font-size: 4.5rem;
+    color: black;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Base scroll indicator styles - shared across all pages */
+.scroll-indicator{
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    cursor: pointer;
+    transform: translateX(-50%);
+    font-size: 4rem;
+    animation: bounce 2s infinite;
+}
+
+/* Page-specific scroll indicator colors */
+body.home-page .scroll-indicator i{
+    color: black;
+}
+
+body.home-page .about-indicator i{
+    color: white;
+}
+
+body.myworks-page .scroll-indicator i{
+    color: #8A82FF;
+}
+
+body.myworks-page .about-indicator i{
+    color: #8A82FF;
+}
+
+body.experience-page .scroll-indicator i{
+    color: #FFFFFF;
+}
+
+body.experience-page .about-indicator i{
+    color: black;
+}
+
+
+
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+
+
+/* About Me Section - Black Background */
+.about{
+    width: 100%;
+    min-height: 100vh;
+    background-color: black;
+    padding: 8rem 9% 4rem;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+
+.about-container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.about-title{
+    font-size: 3.5rem;
+    color: white;
+    font-weight: 600;
+    margin: 0;
+}
+
+.about-content{
+    color: white;
+}
+
+.about-content p{
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: white;
+    margin: 0;
+}
+
+/* Base about indicator styles - shared across all pages */
+.about-indicator{
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    cursor: pointer;
+    transform: translateX(-50%);
+    font-size: 4rem;
+    animation: bounce 2s infinite;
+}
+
+
+/* Page Two My Works Title Screen New Nav Color*/
+body.myworks-page .logo{
+    color: #8A82FF;
+}
+
+body.myworks-page nav a{
+    color: #8A82FF;
+}
+
+body.myworks-page nav a:hover,
+body.myworks-page nav a.active{
+    color: #8A82FF;
+    opacity: 0.7;
+}
+
+
+
+/* Page Two My Works Title Screen*/
+.myworks{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #1E1E1E;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 8rem 2rem 4rem;
+}
+
+.myworks-content{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.myworks-greeting{
+    font-size: 2.5rem;
+    color: #8A82FF;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.myworks-title{
+    font-size: 4.5rem;
+    color: #8A82FF;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Page Two My Works About Screen- White Background */
+.project{
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+    padding: 8rem 9% 4rem;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+
+.project-container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.project-title{
+    font-size: 3.5rem;
+    color: black;
+    font-weight: 600;
+    margin: 0;
+}
+
+.project-content{
+    color: black;
+}
+
+.project-content p{
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: black;
+    margin: 0;
+}
+
+/* Experience Page */
+body.experience-page .logo{
+    color: #E8E1E1;
+}
+
+body.experience-page nav a{
+    color: #E8E1E1;
+}
+
+body.experience-page nav a:hover,
+body.experience-page nav a.active{
+    color: #E8E1E1;
+    opacity: 0.7;
+}
+
+.experienceMain{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #9F9F9F;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 8rem 2rem 4rem;
+}
+
+.experienceMain-content{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.experienceMain-title{
+    font-size: 4.5rem;
+    color: #E8E1E1;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Page Two My Works About Screen- White Background */
+.experienceInfo{
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+    padding: 8rem 9% 4rem;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+
+.experienceInfo-container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.experienceInfo-title{
+    font-size: 3.5rem;
+    color: black;
+    font-weight: 600;
+    margin: 0;
+}
+
+.experienceInfo-content{
+    color: black;
+}
+
+.experienceInfo-content p{
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: black;
+    margin: 0;
+}
