@@ -44,6 +44,44 @@ header{
     z-index: 1000;
 }
 
+myWorksHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 9%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+myExperienceHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 9%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+myContactMeHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 9%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
 /* Base logo styles - can be overridden per page */
 .logo{
     font-size: 2rem;
@@ -85,6 +123,12 @@ body.home-page header.scrolled nav a:hover{
     color: pink;
     opacity: 1.0;
 }
+
+body.home-page header.scrolled nav a.active{
+    color: #FFB6C1;
+    opacity: 0.7; 
+}
+
 
 body.home-page nav a:hover,
 body.home-page nav a.active{
@@ -161,7 +205,14 @@ body.experience-page .scroll-indicator i{
 }
 
 body.experience-page .about-indicator i{
-    color: black;
+    color: #9F9F9F;
+}
+body.contactMe-page .scroll-indicator i{
+    color: #FFFFFF;
+}
+
+body.contactMe-page .about-indicator i{
+    color: #652929;
 }
 
 
@@ -232,22 +283,38 @@ body.experience-page .about-indicator i{
 }
 
 
-/* Page Two My Works Title Screen New Nav Color*/
+/* My Works PAGE*/
 body.myworks-page .logo{
     color: #8A82FF;
+}
+
+body.myworks-page myWorksHeader.scrolled .logo{
+    color: #1E1E1E;
 }
 
 body.myworks-page nav a{
     color: #8A82FF;
 }
 
-body.myworks-page nav a:hover,
-body.myworks-page nav a.active{
+body.myworks-page myWorksHeader.scrolled nav a{
+    color: #1E1E1E;
+}
+
+body.myworks-page myWorksHeader.scrolled nav a:hover{
+    color: #8A82FF;
+    opacity: 1.0;
+}
+
+body.myworks-page myWorksHeader.scrolled nav a.active{
     color: #8A82FF;
     opacity: 0.7;
 }
 
-
+body.myworks-page nav a:hover,
+body.myworks-page nav a.active{
+    opacity: 0.7;
+    color: white;
+}
 
 /* Page Two My Works Title Screen*/
 .myworks{
@@ -285,7 +352,7 @@ body.myworks-page nav a.active{
     margin: 0;
 }
 
-/* Page Two My Works About Screen- White Background */
+/* My Works About Screen- White Background */
 .project{
     width: 100%;
     min-height: 100vh;
@@ -326,17 +393,35 @@ body.myworks-page nav a.active{
 
 /* Experience Page */
 body.experience-page .logo{
-    color: #E8E1E1;
+    color: white;
+}
+
+body.experience-page myExperienceHeader.scrolled .logo{
+    color: gray;
 }
 
 body.experience-page nav a{
-    color: #E8E1E1;
+    color: white;
+}
+
+body.experience-page myExperienceHeader.scrolled nav a{
+    color: gray;
+}
+
+body.experience-page myExperienceHeader.scrolled nav a:hover{
+    color: white;
+    opacity: 1.0;
+}
+
+body.experience-page myExperienceHeader.scrolled nav a.active{
+    color: white;
+    opacity: 1.0;
 }
 
 body.experience-page nav a:hover,
 body.experience-page nav a.active{
-    color: #E8E1E1;
     opacity: 0.7;
+    color: black;
 }
 
 .experienceMain{
@@ -371,7 +456,7 @@ body.experience-page nav a.active{
 .experienceInfo{
     width: 100%;
     min-height: 100vh;
-    background-color: white;
+    background-color: black;
     padding: 8rem 9% 4rem;
     display: flex;
     align-items: flex-start;
@@ -390,16 +475,118 @@ body.experience-page nav a.active{
 
 .experienceInfo-title{
     font-size: 3.5rem;
-    color: black;
+    color: white;
     font-weight: 600;
     margin: 0;
 }
 
 .experienceInfo-content{
-    color: black;
+    color: white;
 }
 
 .experienceInfo-content p{
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: white;
+    margin: 0;
+}
+
+/* Contact Informtion for Potential Employers */
+body.contactMe-page .logo{
+    color: white;
+}
+
+body.contactMe-page myContactMeHeader.scrolled .logo{
+    color: black;
+}
+
+body.contactMe-page nav a{
+    color: white;
+}
+
+body.contactMe-page myContactMeHeader.scrolled nav a{
+    color: black;
+}
+
+body.contactMe-page myContactMeHeader.scrolled nav a:hover{
+    color: #652929;
+    opacity: 1.0;
+}
+
+body.contactMe-page myContactMeHeader.scrolled nav a.active{
+    color: #652929;
+    opacity: 0.7;
+}
+
+body.contactMe-page nav a:hover,
+body.contactMe-page nav a.active{
+    opacity: 0.7;
+    color: black;
+}
+
+
+.contactMeMain{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #652929;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 8rem 2rem 4rem;
+}
+
+.contactMe-content{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+
+.contactMe-title{
+    font-size: 4.5rem;
+    color: white;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Page Two My Works About Screen- White Background */
+.contactMeInfo{
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+    padding: 8rem 9% 4rem;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+
+.contactMeInfo-container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.contactMeInfo-title{
+    font-size: 3.5rem;
+    color: black;
+    font-weight: 600;
+    margin: 0;
+}
+
+.contactMeInfo-content{
+    color: black;
+}
+
+.contactMeInfo-content p{
     font-size: 1.6rem;
     line-height: 1.8;
     color: black;
