@@ -1,6 +1,7 @@
 # Video files directory
 myWorksVideos/
-
 # Resume uploads directory
 resumeUpload/
-
+*.mp4
+*.mov
+*.pdf
