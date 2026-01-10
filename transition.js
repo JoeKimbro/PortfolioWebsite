@@ -71,15 +71,15 @@ if (projectMyWorks && WorksHeader) {
 
 // Logic for Experience Page
 const experienceScrollIndicator = document.querySelector('.experienceMain .scroll-indicator');
-const experienceInfoBottom =  document.querySelector('.experienceInfo');
+const experienceResumeSection = document.querySelector('.resume');
 const experienceMainTop = document.querySelector('.experienceMain');
-const experienceAboutIndicator = document.querySelector('.experienceInfo .about-indicator');
+const experienceAboutIndicator = document.querySelector('.resume .about-indicator');
 const experienceHeader = document.querySelector('myExperienceHeader');
 
-if (experienceScrollIndicator && experienceInfoBottom) {
+if (experienceScrollIndicator && experienceResumeSection) {
     experienceScrollIndicator.addEventListener('click', function(event) {
         event.preventDefault();
-        experienceInfoBottom.scrollIntoView({behavior: 'smooth'});
+        experienceResumeSection.scrollIntoView({behavior: 'smooth'});
     });
 }
 

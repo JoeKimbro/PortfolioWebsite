@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <title>Portfolio Website</title>
 </head>
 <body class="experience-page">
@@ -27,17 +28,34 @@
         </div>
     </section>
 
-    <section class="experienceInfo">
-        <div class="experienceInfo-container">
-            <h2 class="experienceInfo-title">About Me</h2>
-            <div class="experienceInfo-content">
-                <p>My name is Joseph Kimbrough, I'm an aspiring software engineer trying to make an impact on the world that will long surpass me. I thrive in the unknown and love a great challenge. Pushing the limits of one self's and settling for nothing less than exceptional are values that I believe every software engineer should try to accomplish. Creation is a beautiful thing, if done right, that is why preparation and execution are things I focus the most on. If you would like to chat more and get to know how I would be beneficial to your team, please refer to my contact information above.</p>
+    <section class="resume">
+        <div class="resume-container">
+            <div class="resume-wrapper" id="resumeWrapper">
+                <img class="resume-preview" id="resumePreview" alt="Resume Preview">
+                <canvas id="resumeCanvas" style="display: none;"></canvas>
+            </div>
+            <div class="resume-content">
+                <h2 class="resume-title">My Resume</h2>
+                <p>This resume demonstrates key features and experience of my work.</p>
             </div>
         </div>
         <div class="about-indicator">
             <i class="fas fa-chevron-up"></i>
         </div>
     </section>
+
+    <!-- Resume Modal -->
+    <div class="resume-modal" id="resumeModal">
+        <div class="resume-modal-overlay"></div>
+        <div class="resume-modal-content">
+            <button class="resume-modal-close" id="closeResumeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <iframe class="resume-modal-pdf" src="resumeUpload/Resume - Joseph Kimbrough.docx.pdf" type="application/pdf"></iframe>
+        </div>
+    </div>
+
     <script src="transition.js"></script>
+    <script src="resumeModal.js"></script>
 </body>
 </html>

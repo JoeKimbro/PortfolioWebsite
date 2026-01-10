@@ -69,6 +69,7 @@ myExperienceHeader {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 myContactMeHeader {
@@ -82,6 +83,7 @@ myContactMeHeader {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 /* Base logo styles - can be overridden per page */
 .logo{
@@ -94,6 +96,8 @@ myContactMeHeader {
 body.home-page .logo{
     color: black;
 }
+
+
 
 body.home-page header.scrolled .logo{
     color: white;
@@ -189,6 +193,11 @@ body.home-page .scroll-indicator i{
     color: black;
 }
 
+body.home-page header.scrolled{
+    background-color: black;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 body.home-page .about-indicator i{
     color: white;
 }
@@ -242,6 +251,10 @@ body.contactMe-page .about-indicator i{
     display: flex;
     align-items: flex-start;
     position: relative;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
 }
 
 .about-container{
@@ -252,6 +265,7 @@ body.contactMe-page .about-indicator i{
     grid-template-columns: 1fr 2fr;
     gap: 4rem;
     align-items: start;
+    
 }
 
 .about-title{
@@ -432,6 +446,11 @@ body.experience-page .logo{
     color: white;
 }
 
+body.experience-page myExperienceHeader.scrolled{
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 body.experience-page myExperienceHeader.scrolled .logo{
     color: gray;
 }
@@ -445,12 +464,12 @@ body.experience-page myExperienceHeader.scrolled nav a{
 }
 
 body.experience-page myExperienceHeader.scrolled nav a:hover{
-    color: white;
+    color: black;
     opacity: 1.0;
 }
 
 body.experience-page myExperienceHeader.scrolled nav a.active{
-    color: white;
+    color: black;
     opacity: 1.0;
 }
 
@@ -483,7 +502,7 @@ body.experience-page nav a.active{
 
 .experienceMain-title{
     font-size: 4.5rem;
-    color: #E8E1E1;
+    color: white;
     font-weight: 700;
     margin: 0;
 }
@@ -527,6 +546,198 @@ body.experience-page nav a.active{
     margin: 0;
 }
 
+/* Resume Section */
+.resume{
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+    padding: 8rem 9% 4rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.resume-container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.resume-wrapper{
+    position: relative;
+    width: 100%;
+    padding-top: 70%; /* Aspect ratio for typical resume */
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resume-wrapper:hover{
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.resume-preview{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    pointer-events: none;
+    display: none; /* Hidden by default, shown when PDF is loaded */
+}
+
+#resumeCanvas{
+    display: none !important; /* Always hidden, only used for rendering */
+}
+
+.resume-content{
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.resume-title{
+    font-size: 3.5rem;
+    color: black;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+}
+
+.resume-content p{
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: black;
+    margin: 0;
+}
+
+/* Resume Modal Styles */
+.resume-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+.resume-modal.active{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.resume-modal-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+}
+
+.resume-modal-content{
+    position: relative;
+    width: 85%;
+    max-width: 1000px;
+    max-height: 85vh;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.resume-modal-pdf{
+    width: 100%;
+    height: 80vh;
+    max-height: 80vh;
+    border: none;
+    border-radius: 4px;
+}
+
+.resume-modal-close{
+    position: absolute;
+    top: -4rem;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    z-index: 10001;
+    padding: 0.5rem;
+    line-height: 1;
+}
+
+.resume-modal-close:hover{
+    transform: scale(1.2);
+    color: #9F9F9F;
+}
+
+.resume-modal-close i{
+    display: block;
+}
+
+/* Responsive design for resume section */
+@media (max-width: 768px) {
+    .resume-container{
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .resume-title{
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .resume-content p{
+        font-size: 1.4rem;
+    }
+    
+    .resume-wrapper{
+        padding-top: 90%;
+    }
+    
+    .resume-modal-content{
+        width: 95%;
+        padding: 1rem;
+    }
+    
+    .resume-modal-pdf{
+        height: 70vh;
+        max-height: 70vh;
+    }
+    
+    .resume-modal-close{
+        top: -3rem;
+        font-size: 2.5rem;
+    }
+}
+
 /* Contact Informtion for Potential Employers */
 body.contactMe-page .logo{
     color: white;
@@ -558,6 +769,11 @@ body.contactMe-page nav a:hover,
 body.contactMe-page nav a.active{
     opacity: 0.7;
     color: black;
+}
+
+body.contactMe-page myContactMeHeader.scrolled{
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -597,7 +813,8 @@ body.contactMe-page nav a.active{
     background-color: white;
     padding: 8rem 9% 4rem;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     position: relative;
 }
 
@@ -605,28 +822,126 @@ body.contactMe-page nav a.active{
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    align-items: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.contactMeInfo-content-wrapper{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .contactMeInfo-title{
-    font-size: 3.5rem;
+    font-size: 5rem;
     color: black;
     font-weight: 600;
-    margin: 0;
+    margin: 0 0 3rem 0;
 }
 
 .contactMeInfo-content{
     color: black;
+    margin-bottom: 5rem;
 }
 
 .contactMeInfo-content p{
-    font-size: 1.6rem;
+    font-size: 2.2rem;
     line-height: 1.8;
     color: black;
     margin: 0;
+}
+
+/* Social Links - Circular Interactive Buttons */
+.social-links{
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-link{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link i{
+    font-size: 3.5rem;
+    z-index: 1;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-link:hover{
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.social-link:hover i{
+    transform: scale(1.1);
+}
+
+/* LinkedIn */
+.social-link.linkedin:hover{
+    background-color: #0077b5;
+    color: white;
+}
+
+/* GitHub */
+.social-link.github:hover{
+    background-color: #333;
+    color: white;
+}
+
+/* Email */
+.social-link.email:hover{
+    background-color: #D44638;
+    color: white;
+}
+
+/* Responsive design for social links */
+@media (max-width: 768px) {
+    .social-links{
+        gap: 2.5rem;
+    }
+    
+    .social-link{
+        width: 80px;
+        height: 80px;
+    }
+    
+    .social-link i{
+        font-size: 2.5rem;
+    }
+    
+    .contactMeInfo-title{
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .contactMeInfo-content{
+        margin-bottom: 3rem;
+    }
+    
+    .contactMeInfo-content p{
+        font-size: 1.8rem;
+    }
 }
 
 /* Video Project Section */
