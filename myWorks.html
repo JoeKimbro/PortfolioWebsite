@@ -30,15 +30,68 @@
 
     <section class="project">
         <div class="project-container">
-            <h2 class="project-title">About Me</h2>
+            <div class="video-wrapper">
+                <video class="project-video" muted loop autoplay playsinline data-video-src="myWorksVideos/demo-vid2.mov">
+                    <source src="myWorksVideos/demo-vid2.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
             <div class="project-content">
-                <p>My name is Joseph Kimbrough, I'm an aspiring software engineer trying to make an impact on the world that will long surpass me. I thrive in the unknown and love a great challenge. Pushing the limits of one self's and settling for nothing less than exceptional are values that I believe every software engineer should try to accomplish. Creation is a beautiful thing, if done right, that is why preparation and execution are things I focus the most on. If you would like to chat more and get to know how I would be beneficial to your team, please refer to my contact information above.</p>
+                <h2 class="project-title">Project Demo</h2>
+                <p>This video demonstrates key features and functionality of my work.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Example: Add more project sections by duplicating the structure below -->
+    <section class="project">
+        <div class="project-container">
+            <div class="video-wrapper">
+                <video class="project-video" muted loop autoplay playsinline data-video-src="myWorksVideos/your-video-name.mov">
+                    <source src="myWorksVideos/your-video-name.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="project-content">
+                <h2 class="project-title">Project Title 2</h2>
+                <p>Description of your second project. You can add multiple paragraphs or more detailed information here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="project">
+        <div class="project-container">
+            <div class="video-wrapper">
+                <video class="project-video" muted loop autoplay playsinline data-video-src="myWorksVideos/demo-vid2.mov">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="project-content">
+                <h2 class="project-title">Project Title 3</h2>
+                <p>Description of your third project. Add as many project sections as you need!</p>
             </div>
         </div>
         <div class="about-indicator">
             <i class="fas fa-chevron-up"></i>
         </div>
     </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-overlay"></div>
+        <div class="video-modal-content">
+            <button class="video-modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <video class="video-modal-player" controls>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
     <script src="transition.js"></script>
+    <script src="videoHover.js"></script>
 </body>
 </html>
