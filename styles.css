@@ -215,7 +215,7 @@ body.experience-page .scroll-indicator i{
 }
 
 body.experience-page .about-indicator i{
-    color: #9F9F9F;
+    color: black;
 }
 body.contactMe-page .scroll-indicator i{
     color: #FFFFFF;
@@ -251,8 +251,8 @@ body.contactMe-page .about-indicator i{
     display: flex;
     align-items: flex-start;
     position: relative;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     position: relative;
     
 }
@@ -573,8 +573,8 @@ body.experience-page nav a.active{
     padding-top: 70%; /* Aspect ratio for typical resume */
     overflow: hidden;
     border-radius: 8px;
-    background-color: #f5f5f5;
-    border: 2px solid #ddd;
+    background-color: black;
+    border: 3px solid black;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
