@@ -3,11 +3,8 @@
 *.mov
 *.pdf
 
-# Allow specific directories for GitHub Pages
-!myWorksVideos/
+# Allow resume directory for GitHub Pages (videos now use YouTube)
 !resumeUpload/
 
-# Allow media files within those specific directories
-!myWorksVideos/**/*.mp4
-!myWorksVideos/**/*.mov
+# Allow PDF files within resume directory
 !resumeUpload/**/*.pdf
