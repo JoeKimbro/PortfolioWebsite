@@ -1,7 +1,13 @@
-# Video files directory
-myWorksVideos/
-# Resume uploads directory
-resumeUpload/
+# Ignore media files globally
 *.mp4
 *.mov
 *.pdf
+
+# Allow specific directories for GitHub Pages
+!myWorksVideos/
+!resumeUpload/
+
+# Allow media files within those specific directories
+!myWorksVideos/**/*.mp4
+!myWorksVideos/**/*.mov
+!resumeUpload/**/*.pdf
