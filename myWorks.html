@@ -31,10 +31,13 @@
     <section class="project">
         <div class="project-container">
             <div class="video-wrapper">
-                <video class="project-video" muted loop autoplay playsinline data-video-src="myWorksVideos/demo-vid2.mov">
-                    <source src="myWorksVideos/demo-vid2.mov" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe class="project-video youtube-video" 
+                        src="https://www.youtube.com/embed/s-eYJ6k31iY?autoplay=1&loop=1&mute=1&playlist=s-eYJ6k31iY&controls=0&modestbranding=1&rel=0"
+                        frameborder="0" 
+                        allow="autoplay; encrypted-media" 
+                        allowfullscreen
+                        data-youtube-id="s-eYJ6k31iY">
+                </iframe>
             </div>
             <div class="project-content">
                 <h2 class="project-title">BLink</h2>
@@ -90,10 +93,11 @@
             <button class="video-modal-close" id="closeModal">
                 <i class="fas fa-times"></i>
             </button>
-            <video class="video-modal-player" controls>
+            <video class="video-modal-player" controls style="display: none;">
                 <source src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            <iframe class="video-modal-youtube" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
         </div>
     </div>
 

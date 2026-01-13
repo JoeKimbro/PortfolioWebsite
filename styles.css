@@ -1063,12 +1063,14 @@ body.contactMe-page myContactMeHeader.scrolled{
     padding: 2rem;
 }
 
-.video-modal-player{
+.video-modal-player,
+.video-modal-youtube{
     width: 100%;
     height: auto;
     max-height: 90vh;
     border-radius: 8px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    aspect-ratio: 16 / 9;
 }
 
 .video-modal-close{
