@@ -20,16 +20,16 @@ if (aboutIndicator && heroSection) {
     });
 }
 
-// Scroll listener to change header text color (Home Page only)
+// Scroll listener to change header to sidebar (Home Page)
 if (heroSection && header) {
     window.addEventListener('scroll', function() {
         const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-        const scrollPosition = window.scrollY + header.offsetHeight;
+        const scrollPosition = window.scrollY;
         
         if (scrollPosition >= heroBottom) {
-            header.classList.add('scrolled');
+            header.classList.add('scrolled', 'sidebar-mode');
         } else {
-            header.classList.remove('scrolled');
+            header.classList.remove('scrolled', 'sidebar-mode');
         }
     });
 }
@@ -55,16 +55,16 @@ if (myworksAboutIndicator && projectMyWorks) {
     });
 }
 
-// Scroll listener to change header text color (Home Page only)
+// Scroll listener to change header to sidebar (Works Page)
 if (projectMyWorks && WorksHeader) {
     window.addEventListener('scroll', function() {
         const projectBottom = projectMyWorks.offsetTop + projectMyWorks.offsetHeight;
-        const projectScrollPosition = window.scrollY + WorksHeader.offsetHeight;
+        const projectScrollPosition = window.scrollY;
         
         if (projectScrollPosition >= projectBottom) {
-            WorksHeader.classList.add('scrolled');
+            WorksHeader.classList.add('scrolled', 'sidebar-mode');
         } else {
-            WorksHeader.classList.remove('scrolled');
+            WorksHeader.classList.remove('scrolled', 'sidebar-mode');
         }
     });
 }
@@ -93,12 +93,12 @@ if (experienceAboutIndicator && experienceMainTop) {
 if (experienceMainTop && experienceHeader) {
     window.addEventListener('scroll', function() {
         const experienceBottom = experienceMainTop.offsetTop + experienceMainTop.offsetHeight;
-        const experienceScrollPosition = window.scrollY + experienceHeader.offsetHeight;
+        const experienceScrollPosition = window.scrollY;
         
         if (experienceScrollPosition >= experienceBottom) {
-            experienceHeader.classList.add('scrolled');
+            experienceHeader.classList.add('scrolled', 'sidebar-mode');
         } else {
-            experienceHeader.classList.remove('scrolled');
+            experienceHeader.classList.remove('scrolled', 'sidebar-mode');
         }
     });
 }
@@ -127,12 +127,12 @@ if (contactMeAboutIndicator && contactMeMainTop) {
 if (contactMeMainTop && contactMeHeader) {
     window.addEventListener('scroll', function() {
         const contactMeBottom = contactMeMainTop.offsetTop + contactMeMainTop.offsetHeight;
-        const contactMeScrollPosition = window.scrollY + contactMeHeader.offsetHeight;
+        const contactMeScrollPosition = window.scrollY;
         
         if (contactMeScrollPosition >= contactMeBottom) {
-            contactMeHeader.classList.add('scrolled');
+            contactMeHeader.classList.add('scrolled', 'sidebar-mode');
         } else {
-            contactMeHeader.classList.remove('scrolled');
+            contactMeHeader.classList.remove('scrolled', 'sidebar-mode');
         }
     });
 }

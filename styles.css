@@ -23,11 +23,21 @@ body{
 
 /* Home page specific body styles */
 body.home-page{
-    background-color: black;
+    background-color: #1E1E1E;
 }
 
 /* My Works page specific body styles */
 body.myworks-page{
+    background-color: #1E1E1E;
+}
+
+/* Experience page specific body styles */
+body.experience-page{
+    background-color: #1E1E1E;
+}
+
+/* Contact page specific body styles */
+body.contactMe-page{
     background-color: #1E1E1E;
 }
 
@@ -42,6 +52,55 @@ header{
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Sidebar styles when scrolled */
+header.sidebar-mode {
+    width: 200px;
+    height: auto;
+    left: auto;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background-color: #1E1E1E;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    justify-content: flex-start;
+}
+
+header.sidebar-mode .logo {
+    margin-bottom: 1.5rem;
+    color: #8A82FF;
+    font-size: 1.6rem;
+}
+
+header.sidebar-mode nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+header.sidebar-mode nav a {
+    color: white;
+    padding: 0.7rem 0.8rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 1.4rem;
+}
+
+header.sidebar-mode nav a:hover {
+    background-color: #8A82FF;
+    color: white;
+    opacity: 1;
+}
+
+header.sidebar-mode nav a.active {
+    background-color: #8A82FF;
+    color: white;
+    opacity: 1;
 }
 
 myWorksHeader {
@@ -55,7 +114,54 @@ myWorksHeader {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+myWorksHeader.sidebar-mode {
+    width: 200px;
+    height: auto;
+    left: auto;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background-color: #1E1E1E;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    justify-content: flex-start;
+}
+
+myWorksHeader.sidebar-mode .logo {
+    margin-bottom: 1.5rem;
+    color: #8A82FF;
+    font-size: 1.6rem;
+}
+
+myWorksHeader.sidebar-mode nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+myWorksHeader.sidebar-mode nav a {
+    color: white;
+    padding: 0.7rem 0.8rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 1.4rem;
+}
+
+myWorksHeader.sidebar-mode nav a:hover {
+    background-color: #8A82FF;
+    color: white;
+    opacity: 1;
+}
+
+myWorksHeader.sidebar-mode nav a.active {
+    background-color: #8A82FF;
+    color: white;
+    opacity: 1;
 }
 
 myExperienceHeader {
@@ -69,7 +175,54 @@ myExperienceHeader {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+myExperienceHeader.sidebar-mode {
+    width: 200px;
+    height: auto;
+    left: auto;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background-color: #1E1E1E;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    justify-content: flex-start;
+}
+
+myExperienceHeader.sidebar-mode .logo {
+    margin-bottom: 1.5rem;
+    color: #8A82FF;
+    font-size: 1.6rem;
+}
+
+myExperienceHeader.sidebar-mode nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+myExperienceHeader.sidebar-mode nav a {
+    color: white;
+    padding: 0.7rem 0.8rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 1.4rem;
+}
+
+myExperienceHeader.sidebar-mode nav a:hover {
+    background-color: #8A82FF;
+    color: white;
+    opacity: 1;
+}
+
+myExperienceHeader.sidebar-mode nav a.active {
+    background-color: #8A82FF;
+    color: white;
+    opacity: 1;
 }
 
 myContactMeHeader {
@@ -83,7 +236,54 @@ myContactMeHeader {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+myContactMeHeader.sidebar-mode {
+    width: 200px;
+    height: auto;
+    left: auto;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background-color: #1E1E1E;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    justify-content: flex-start;
+}
+
+myContactMeHeader.sidebar-mode .logo {
+    margin-bottom: 1.5rem;
+    color: #8A82FF;
+    font-size: 1.6rem;
+}
+
+myContactMeHeader.sidebar-mode nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+myContactMeHeader.sidebar-mode nav a {
+    color: white;
+    padding: 0.7rem 0.8rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 1.4rem;
+}
+
+myContactMeHeader.sidebar-mode nav a:hover {
+    background-color: #8A82FF;
+    color: white;
+    opacity: 1;
+}
+
+myContactMeHeader.sidebar-mode nav a.active {
+    background-color: #8A82FF;
+    color: white;
+    opacity: 1;
 }
 /* Base logo styles - can be overridden per page */
 .logo{
@@ -94,18 +294,41 @@ myContactMeHeader {
 
 /* Home page navigation colors */
 body.home-page .logo{
-    color: black;
+    color: #8A82FF;
 }
 
+body.home-page header.scrolled{
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
+body.home-page header.scrolled:not(.sidebar-mode){
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.home-page header.scrolled.sidebar-mode {
+    background-color: #1E1E1E;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+}
 
 body.home-page header.scrolled .logo{
-    color: white;
+    color: #1E1E1E;
+}
+
+body.home-page header.scrolled.sidebar-mode .logo {
+    color: #8A82FF;
 }
 
 nav{
     display: flex;
     gap: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger menu button */
+.menu-toggle {
+    display: none !important;
 }
 
 /* Base nav link styles */
@@ -117,23 +340,22 @@ nav a{
 
 /* Home page navigation colors */
 body.home-page nav a{
-    color: black;
+    color: #8A82FF;
 }
 
-body.home-page header.scrolled nav a{
-    color: white;
+body.home-page header.scrolled:not(.sidebar-mode) nav a{
+    color: #1E1E1E;
 }
 
-body.home-page header.scrolled nav a:hover{
-    color: pink;
+body.home-page header.scrolled:not(.sidebar-mode) nav a:hover{
+    color: #8A82FF;
     opacity: 1.0;
 }
 
-body.home-page header.scrolled nav a.active{
-    color: #FFB6C1;
-    opacity: 0.7; 
+body.home-page header.scrolled:not(.sidebar-mode) nav a.active{
+    color: #8A82FF;
+    opacity: 0.7;
 }
-
 
 body.home-page nav a:hover,
 body.home-page nav a.active{
@@ -141,11 +363,11 @@ body.home-page nav a.active{
     color: white;
 }
 
-/* Hero Section - Pink Background */
+/* Hero Section - My Works Color Scheme */
 .hero{
     width: 100%;
-    min-height: 100vh;
-    background-color: #FFB6C1;
+    min-height: 50vh;
+    background-color: #1E1E1E;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -165,14 +387,14 @@ body.home-page nav a.active{
 
 .hero-greeting{
     font-size: 2.5rem;
-    color: black;
+    color: #8A82FF;
     margin-bottom: 1rem;
     font-weight: 400;
 }
 
 .hero-title{
     font-size: 4.5rem;
-    color: black;
+    color: #8A82FF;
     font-weight: 700;
     margin: 0;
 }
@@ -190,16 +412,11 @@ body.home-page nav a.active{
 
 /* Page-specific scroll indicator colors */
 body.home-page .scroll-indicator i{
-    color: black;
-}
-
-body.home-page header.scrolled{
-    background-color: black;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: #8A82FF;
 }
 
 body.home-page .about-indicator i{
-    color: white;
+    color: #8A82FF;
 }
 
 body.myworks-page .scroll-indicator i{
@@ -211,18 +428,18 @@ body.myworks-page .about-indicator i{
 }
 
 body.experience-page .scroll-indicator i{
-    color: #FFFFFF;
+    color: #8A82FF;
 }
 
 body.experience-page .about-indicator i{
-    color: black;
+    color: #8A82FF;
 }
 body.contactMe-page .scroll-indicator i{
-    color: #FFFFFF;
+    color: #8A82FF;
 }
 
 body.contactMe-page .about-indicator i{
-    color: #652929;
+    color: #8A82FF;
 }
 
 
@@ -246,7 +463,7 @@ body.contactMe-page .about-indicator i{
 .about{
     width: 100%;
     min-height: 100vh;
-    background-color: black;
+    background-color: white;
     padding: 8rem 9% 4rem;
     display: flex;
     align-items: flex-start;
@@ -270,19 +487,19 @@ body.contactMe-page .about-indicator i{
 
 .about-title{
     font-size: 3.5rem;
-    color: white;
+    color: black;
     font-weight: 600;
     margin: 0;
 }
 
 .about-content{
-    color: white;
+    color: black;
 }
 
 .about-content p{
     font-size: 1.6rem;
     line-height: 1.8;
-    color: white;
+    color: black;
     margin: 0;
 }
 
@@ -303,29 +520,38 @@ body.myworks-page .logo{
     color: #8A82FF;
 }
 
-body.myworks-page myWorksHeader.scrolled{
+body.myworks-page myWorksHeader.scrolled:not(.sidebar-mode){
     background-color: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-body.myworks-page myWorksHeader.scrolled .logo{
+body.myworks-page myWorksHeader.scrolled.sidebar-mode {
+    background-color: #1E1E1E;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+body.myworks-page myWorksHeader.scrolled:not(.sidebar-mode) .logo{
     color: #1E1E1E;
+}
+
+body.myworks-page myWorksHeader.scrolled.sidebar-mode .logo {
+    color: #8A82FF;
 }
 
 body.myworks-page nav a{
     color: #8A82FF;
 }
 
-body.myworks-page myWorksHeader.scrolled nav a{
+body.myworks-page myWorksHeader.scrolled:not(.sidebar-mode) nav a{
     color: #1E1E1E;
 }
 
-body.myworks-page myWorksHeader.scrolled nav a:hover{
+body.myworks-page myWorksHeader.scrolled:not(.sidebar-mode) nav a:hover{
     color: #8A82FF;
     opacity: 1.0;
 }
 
-body.myworks-page myWorksHeader.scrolled nav a.active{
+body.myworks-page myWorksHeader.scrolled:not(.sidebar-mode) nav a.active{
     color: #8A82FF;
     opacity: 0.7;
 }
@@ -339,7 +565,7 @@ body.myworks-page nav a.active{
 /* Page Two My Works Title Screen*/
 .myworks{
     width: 100%;
-    min-height: 100vh;
+    min-height: 50vh;
     background-color: #1E1E1E;
     display: flex;
     flex-direction: column;
@@ -443,46 +669,55 @@ body.myworks-page nav a.active{
 
 /* Experience Page */
 body.experience-page .logo{
-    color: white;
+    color: #8A82FF;
 }
 
-body.experience-page myExperienceHeader.scrolled{
+body.experience-page myExperienceHeader.scrolled:not(.sidebar-mode){
     background-color: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-body.experience-page myExperienceHeader.scrolled .logo{
-    color: gray;
+body.experience-page myExperienceHeader.scrolled.sidebar-mode {
+    background-color: #1E1E1E;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+body.experience-page myExperienceHeader.scrolled:not(.sidebar-mode) .logo{
+    color: #1E1E1E;
+}
+
+body.experience-page myExperienceHeader.scrolled.sidebar-mode .logo {
+    color: #8A82FF;
 }
 
 body.experience-page nav a{
-    color: white;
+    color: #8A82FF;
 }
 
-body.experience-page myExperienceHeader.scrolled nav a{
-    color: gray;
+body.experience-page myExperienceHeader.scrolled:not(.sidebar-mode) nav a{
+    color: #1E1E1E;
 }
 
-body.experience-page myExperienceHeader.scrolled nav a:hover{
-    color: black;
+body.experience-page myExperienceHeader.scrolled:not(.sidebar-mode) nav a:hover{
+    color: #8A82FF;
     opacity: 1.0;
 }
 
-body.experience-page myExperienceHeader.scrolled nav a.active{
-    color: black;
-    opacity: 1.0;
+body.experience-page myExperienceHeader.scrolled:not(.sidebar-mode) nav a.active{
+    color: #8A82FF;
+    opacity: 0.7;
 }
 
 body.experience-page nav a:hover,
 body.experience-page nav a.active{
     opacity: 0.7;
-    color: black;
+    color: white;
 }
 
 .experienceMain{
     width: 100%;
-    min-height: 100vh;
-    background-color: #9F9F9F;
+    min-height: 50vh;
+    background-color: #1E1E1E;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -502,7 +737,7 @@ body.experience-page nav a.active{
 
 .experienceMain-title{
     font-size: 4.5rem;
-    color: white;
+    color: #8A82FF;
     font-weight: 700;
     margin: 0;
 }
@@ -740,47 +975,56 @@ body.experience-page nav a.active{
 
 /* Contact Informtion for Potential Employers */
 body.contactMe-page .logo{
-    color: white;
+    color: #8A82FF;
 }
 
-body.contactMe-page myContactMeHeader.scrolled .logo{
-    color: black;
+body.contactMe-page myContactMeHeader.scrolled:not(.sidebar-mode){
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.contactMe-page myContactMeHeader.scrolled.sidebar-mode {
+    background-color: #1E1E1E;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+body.contactMe-page myContactMeHeader.scrolled:not(.sidebar-mode) .logo{
+    color: #1E1E1E;
+}
+
+body.contactMe-page myContactMeHeader.scrolled.sidebar-mode .logo {
+    color: #8A82FF;
 }
 
 body.contactMe-page nav a{
-    color: white;
+    color: #8A82FF;
 }
 
-body.contactMe-page myContactMeHeader.scrolled nav a{
-    color: black;
+body.contactMe-page myContactMeHeader.scrolled:not(.sidebar-mode) nav a{
+    color: #1E1E1E;
 }
 
-body.contactMe-page myContactMeHeader.scrolled nav a:hover{
-    color: #652929;
+body.contactMe-page myContactMeHeader.scrolled:not(.sidebar-mode) nav a:hover{
+    color: #8A82FF;
     opacity: 1.0;
 }
 
-body.contactMe-page myContactMeHeader.scrolled nav a.active{
-    color: #652929;
+body.contactMe-page myContactMeHeader.scrolled:not(.sidebar-mode) nav a.active{
+    color: #8A82FF;
     opacity: 0.7;
 }
 
 body.contactMe-page nav a:hover,
 body.contactMe-page nav a.active{
     opacity: 0.7;
-    color: black;
-}
-
-body.contactMe-page myContactMeHeader.scrolled{
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: white;
 }
 
 
 .contactMeMain{
     width: 100%;
-    min-height: 100vh;
-    background-color: #652929;
+    min-height: 50vh;
+    background-color: #1E1E1E;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -801,7 +1045,7 @@ body.contactMe-page myContactMeHeader.scrolled{
 
 .contactMe-title{
     font-size: 4.5rem;
-    color: white;
+    color: #8A82FF;
     font-weight: 700;
     margin: 0;
 }
@@ -899,19 +1143,19 @@ body.contactMe-page myContactMeHeader.scrolled{
 
 /* LinkedIn */
 .social-link.linkedin:hover{
-    background-color: #0077b5;
+    background-color: #8A82FF;
     color: white;
 }
 
 /* GitHub */
 .social-link.github:hover{
-    background-color: #333;
+    background-color: #8A82FF;
     color: white;
 }
 
 /* Email */
 .social-link.email:hover{
-    background-color: #D44638;
+    background-color: #8A82FF;
     color: white;
 }
 
