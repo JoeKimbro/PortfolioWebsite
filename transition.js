@@ -1,3 +1,29 @@
+// Mobile menu toggle functionality
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+if (menuToggle && mobileMenu && mobileMenuOverlay) {
+    menuToggle.addEventListener('click', function() {
+        mobileMenu.classList.toggle('active');
+        mobileMenuOverlay.classList.toggle('active');
+    });
+
+    mobileMenuOverlay.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+    });
+
+    // Close menu when clicking on a link
+    const mobileMenuLinks = mobileMenu.querySelectorAll('nav a');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+        });
+    });
+}
+
 const scrollIndicator = document.querySelector('.scroll-indicator');
 const aboutSection = document.querySelector('.about');
 const header = document.querySelector('header');
@@ -28,8 +54,10 @@ if (heroSection && header) {
         
         if (scrollPosition >= heroBottom) {
             header.classList.add('scrolled', 'sidebar-mode');
+            document.body.classList.add('sidebar-active');
         } else {
             header.classList.remove('scrolled', 'sidebar-mode');
+            document.body.classList.remove('sidebar-active');
         }
     });
 }
@@ -63,8 +91,10 @@ if (projectMyWorks && WorksHeader) {
         
         if (projectScrollPosition >= projectBottom) {
             WorksHeader.classList.add('scrolled', 'sidebar-mode');
+            document.body.classList.add('sidebar-active');
         } else {
             WorksHeader.classList.remove('scrolled', 'sidebar-mode');
+            document.body.classList.remove('sidebar-active');
         }
     });
 }
@@ -97,8 +127,10 @@ if (experienceMainTop && experienceHeader) {
         
         if (experienceScrollPosition >= experienceBottom) {
             experienceHeader.classList.add('scrolled', 'sidebar-mode');
+            document.body.classList.add('sidebar-active');
         } else {
             experienceHeader.classList.remove('scrolled', 'sidebar-mode');
+            document.body.classList.remove('sidebar-active');
         }
     });
 }
@@ -131,8 +163,10 @@ if (contactMeMainTop && contactMeHeader) {
         
         if (contactMeScrollPosition >= contactMeBottom) {
             contactMeHeader.classList.add('scrolled', 'sidebar-mode');
+            document.body.classList.add('sidebar-active');
         } else {
             contactMeHeader.classList.remove('scrolled', 'sidebar-mode');
+            document.body.classList.remove('sidebar-active');
         }
     });
 }
