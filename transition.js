@@ -1,172 +1,154 @@
-// Mobile menu toggle functionality
-const menuToggle = document.getElementById('menuToggle');
-const mobileMenu = document.getElementById('mobileMenu');
-const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+// Navigation smooth scrolling
+const navLinks = document.querySelectorAll('#mainNav a');
+const sections = document.querySelectorAll('section[id]');
 
-if (menuToggle && mobileMenu && mobileMenuOverlay) {
-    menuToggle.addEventListener('click', function() {
-        mobileMenu.classList.toggle('active');
-        mobileMenuOverlay.classList.toggle('active');
+// Handle navigation clicks
+navLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Update active nav state
+            navLinks.forEach(nav => nav.classList.remove('active'));
+            this.classList.add('active');
+        }
     });
+});
 
-    mobileMenuOverlay.addEventListener('click', function() {
-        mobileMenu.classList.remove('active');
-        mobileMenuOverlay.classList.remove('active');
+// Update active nav on scroll
+function updateActiveNav() {
+    let current = '';
+    const scrollPosition = window.pageYOffset + 200; // Offset for header
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+        }
     });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
+}
 
-    // Close menu when clicking on a link
-    const mobileMenuLinks = mobileMenu.querySelectorAll('nav a');
-    mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
+window.addEventListener('scroll', updateActiveNav);
+
+// Logic for top chevron - appears when scrolled to contact section, scrolls to top when clicked
+const topChevron = document.getElementById('topChevron');
+const contactSection = document.getElementById('contact');
+
+if (topChevron && contactSection) {
+    // Show/hide chevron based on scroll position
+    function checkScrollPosition() {
+        const contactTop = contactSection.offsetTop;
+        const scrollPosition = window.scrollY + window.innerHeight;
+        
+        if (scrollPosition >= contactTop) {
+            topChevron.classList.add('visible');
+        } else {
+            topChevron.classList.remove('visible');
+        }
+    }
+    
+    // Check on scroll
+    window.addEventListener('scroll', checkScrollPosition);
+    
+    // Check on load
+    checkScrollPosition();
+    
+    // Scroll to top when clicked
+    topChevron.addEventListener('click', function(event){
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// Animated role text switching
+const roleText = document.getElementById('roleText');
+const roles = ['Aspiring Software Engineer', 'Team Member', 'Fast Learner', 'Critical Thinker'];
+let currentRoleIndex = 0;
+
+function switchRole() {
+    roleText.style.opacity = '0';
+    
+    setTimeout(() => {
+        currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+        roleText.textContent = roles[currentRoleIndex];
+        roleText.style.opacity = '1';
+    }, 500);
+}
+
+// Start the role switching animation
+if (roleText) {
+    setInterval(switchRole, 3000); // Switch every 3 seconds
+}
+
+// White circle glow that follows cursor
+const cursorGlow = document.querySelector('.custom-cursor');
+
+if (cursorGlow) {
+    document.addEventListener('mousemove', (e) => {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+    });
+}
+
+// Scroll animations for project cards and all boxes
+const projectCards = document.querySelectorAll('.project-card');
+const allBoxes = document.querySelectorAll('.experience-timeline-box, .education-timeline-box, .skills-box, .about-box');
+
+if (projectCards.length > 0) {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                entry.target.classList.remove('hidden');
+            } else {
+                entry.target.classList.add('hidden');
+                entry.target.classList.remove('visible');
+            }
         });
+    }, observerOptions);
+
+    projectCards.forEach(card => {
+        observer.observe(card);
     });
 }
 
-const scrollIndicator = document.querySelector('.scroll-indicator');
-const aboutSection = document.querySelector('.about');
-const header = document.querySelector('header');
-const heroSection = document.querySelector('.hero');
+// Apply same animation to all boxes
+if (allBoxes.length > 0) {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
 
-//logic for Home Page
-if (scrollIndicator && aboutSection) {
-    scrollIndicator.addEventListener('click', function(event) {
-        event.preventDefault();
-        aboutSection.scrollIntoView({ behavior: 'smooth' });
+    const boxObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, observerOptions);
+
+    allBoxes.forEach(box => {
+        boxObserver.observe(box);
     });
 }
-
-const aboutIndicator = document.querySelector('.about-indicator');
-
-if (aboutIndicator && heroSection) {
-    aboutIndicator.addEventListener('click', function(event) {
-        event.preventDefault();
-        heroSection.scrollIntoView({behavior: 'smooth'}); 
-    });
-}
-
-// Scroll listener to change header to sidebar (Home Page)
-if (heroSection && header) {
-    window.addEventListener('scroll', function() {
-        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-        const scrollPosition = window.scrollY;
-        
-        if (scrollPosition >= heroBottom) {
-            header.classList.add('scrolled', 'sidebar-mode');
-            document.body.classList.add('sidebar-active');
-        } else {
-            header.classList.remove('scrolled', 'sidebar-mode');
-            document.body.classList.remove('sidebar-active');
-        }
-    });
-}
-
-//Logic for Works Page - using same class names as home page
-const myworksScrollIndicator = document.querySelector('.myworks .scroll-indicator');
-const projectSection =  document.querySelector('.project');
-const projectMyWorks = document.querySelector('.myworks');
-const myworksAboutIndicator = document.querySelector('.project .about-indicator');
-const WorksHeader = document.querySelector('myWorksHeader');
-
-if (myworksScrollIndicator && projectSection) {
-    myworksScrollIndicator.addEventListener('click', function(event) {
-        event.preventDefault();
-        projectSection.scrollIntoView({behavior: 'smooth'});
-    });
-}
-
-if (myworksAboutIndicator && projectMyWorks) {
-    myworksAboutIndicator.addEventListener('click', function(event){
-        event.preventDefault();
-        projectMyWorks.scrollIntoView({behavior: 'smooth'});
-    });
-}
-
-// Scroll listener to change header to sidebar (Works Page)
-if (projectMyWorks && WorksHeader) {
-    window.addEventListener('scroll', function() {
-        const projectBottom = projectMyWorks.offsetTop + projectMyWorks.offsetHeight;
-        const projectScrollPosition = window.scrollY;
-        
-        if (projectScrollPosition >= projectBottom) {
-            WorksHeader.classList.add('scrolled', 'sidebar-mode');
-            document.body.classList.add('sidebar-active');
-        } else {
-            WorksHeader.classList.remove('scrolled', 'sidebar-mode');
-            document.body.classList.remove('sidebar-active');
-        }
-    });
-}
-
-// Logic for Experience Page
-const experienceScrollIndicator = document.querySelector('.experienceMain .scroll-indicator');
-const experienceResumeSection = document.querySelector('.resume');
-const experienceMainTop = document.querySelector('.experienceMain');
-const experienceAboutIndicator = document.querySelector('.resume .about-indicator');
-const experienceHeader = document.querySelector('myExperienceHeader');
-
-if (experienceScrollIndicator && experienceResumeSection) {
-    experienceScrollIndicator.addEventListener('click', function(event) {
-        event.preventDefault();
-        experienceResumeSection.scrollIntoView({behavior: 'smooth'});
-    });
-}
-
-if (experienceAboutIndicator && experienceMainTop) {
-    experienceAboutIndicator.addEventListener('click', function(event){
-        event.preventDefault();
-        experienceMainTop.scrollIntoView({behavior: 'smooth'});
-    });
-}
-
-if (experienceMainTop && experienceHeader) {
-    window.addEventListener('scroll', function() {
-        const experienceBottom = experienceMainTop.offsetTop + experienceMainTop.offsetHeight;
-        const experienceScrollPosition = window.scrollY;
-        
-        if (experienceScrollPosition >= experienceBottom) {
-            experienceHeader.classList.add('scrolled', 'sidebar-mode');
-            document.body.classList.add('sidebar-active');
-        } else {
-            experienceHeader.classList.remove('scrolled', 'sidebar-mode');
-            document.body.classList.remove('sidebar-active');
-        }
-    });
-}
-
-// Logic for Contact Me Page 
-const contactMeScrollIndicator = document.querySelector('.contactMeMain .scroll-indicator');
-const contactMeInfoBottom =  document.querySelector('.contactMeInfo');
-const contactMeMainTop = document.querySelector('.contactMeMain');
-const contactMeAboutIndicator = document.querySelector('.contactMeInfo .about-indicator');
-const contactMeHeader = document.querySelector('myContactMeHeader');
-
-if (contactMeScrollIndicator && contactMeInfoBottom) {
-    contactMeScrollIndicator.addEventListener('click', function(event) {
-        event.preventDefault();
-        contactMeInfoBottom.scrollIntoView({behavior: 'smooth'});
-    });
-}
-
-if (contactMeAboutIndicator && contactMeMainTop) {
-    contactMeAboutIndicator.addEventListener('click', function(event){
-        event.preventDefault();
-        contactMeMainTop.scrollIntoView({behavior: 'smooth'});
-    });
-}
-
-if (contactMeMainTop && contactMeHeader) {
-    window.addEventListener('scroll', function() {
-        const contactMeBottom = contactMeMainTop.offsetTop + contactMeMainTop.offsetHeight;
-        const contactMeScrollPosition = window.scrollY;
-        
-        if (contactMeScrollPosition >= contactMeBottom) {
-            contactMeHeader.classList.add('scrolled', 'sidebar-mode');
-            document.body.classList.add('sidebar-active');
-        } else {
-            contactMeHeader.classList.remove('scrolled', 'sidebar-mode');
-            document.body.classList.remove('sidebar-active');
-        }
-    });
-}
+ 
