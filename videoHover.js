@@ -1,38 +1,8 @@
-// Video autoplay functionality
+/**
+ * Video Modal Functionality
+ * Handles video modal opening and closing for project videos
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle video projects in video-project sections
-    const videoProjects = document.querySelectorAll('.video-project');
-    
-    videoProjects.forEach(videoProject => {
-        const video = videoProject.querySelector('.project-video');
-        
-        if (video) {
-            // Play video automatically
-            video.play().catch(function(error) {
-                // Auto-play might be blocked by browser, handle silently
-                console.log('Video autoplay blocked:', error);
-            });
-        }
-    });
-    
-    // Handle video projects in project sections
-    const projectSections = document.querySelectorAll('.project');
-    
-    projectSections.forEach(projectSection => {
-        const video = projectSection.querySelector('.project-video');
-        
-        if (video) {
-            // Only autoplay regular video elements, not YouTube iframes
-            if (video.tagName === 'VIDEO') {
-                video.play().catch(function(error) {
-                    // Auto-play might be blocked by browser, handle silently
-                    console.log('Video autoplay blocked:', error);
-                });
-            }
-            // YouTube iframes autoplay via URL parameters, no action needed
-        }
-    });
-    
     // Video modal functionality
     const videoModal = document.getElementById('videoModal');
     const closeModal = document.getElementById('closeModal');
@@ -41,54 +11,71 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalOverlay = document.querySelector('.video-modal-overlay');
     const projectVideos = document.querySelectorAll('.project-video');
     
-    // Function to open modal with video
+    if (!videoModal) {
+        console.warn('Video modal element not found');
+        return;
+    }
+    
+    /**
+     * Open modal with regular video
+     * @param {string} videoSrc - Source URL of the video
+     */
     function openVideoModal(videoSrc) {
+        if (!modalVideo) return;
+        
         // Hide both players first
         modalVideo.style.display = 'none';
-        modalYoutube.style.display = 'none';
+        if (modalYoutube) modalYoutube.style.display = 'none';
         
         modalVideo.src = videoSrc;
-        modalVideo.muted = false; // Unmute for full video
+        modalVideo.muted = false;
         modalVideo.style.display = 'block';
         videoModal.classList.add('active');
+        
         modalVideo.play().catch(function(error) {
             console.log('Video play error:', error);
         });
-        // Prevent body scroll when modal is open
+        
         document.body.style.overflow = 'hidden';
     }
     
-    // Function to open modal with YouTube
+    /**
+     * Open modal with YouTube video
+     * @param {string} youtubeId - YouTube video ID
+     */
     function openYoutubeModal(youtubeId) {
+        if (!modalYoutube) return;
+        
         // Hide both players first
-        modalVideo.style.display = 'none';
+        if (modalVideo) modalVideo.style.display = 'none';
         modalYoutube.style.display = 'none';
         
         const youtubeUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
         modalYoutube.src = youtubeUrl;
         modalYoutube.style.display = 'block';
         videoModal.classList.add('active');
-        // Prevent body scroll when modal is open
+        
         document.body.style.overflow = 'hidden';
     }
     
-    // Function to close modal
+    /**
+     * Close the video modal
+     */
     function closeVideoModal() {
         videoModal.classList.remove('active');
         
         // Pause and reset video if it's visible
-        if (modalVideo.style.display !== 'none') {
+        if (modalVideo && modalVideo.style.display !== 'none') {
             modalVideo.pause();
             modalVideo.currentTime = 0;
             modalVideo.src = '';
         }
         
         // Reset YouTube iframe if it's visible
-        if (modalYoutube.style.display !== 'none') {
+        if (modalYoutube && modalYoutube.style.display !== 'none') {
             modalYoutube.src = '';
         }
         
-        // Restore body scroll
         document.body.style.overflow = '';
     }
     

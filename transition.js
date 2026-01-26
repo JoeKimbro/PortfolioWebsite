@@ -1,3 +1,8 @@
+/**
+ * Navigation and Scroll Animations
+ * Handles navigation, scroll animations, role text rotation, and timeline animations
+ */
+
 // Navigation smooth scrolling
 const navLinks = document.querySelectorAll('#mainNav a');
 const sections = document.querySelectorAll('section[id]');
@@ -22,16 +27,34 @@ navLinks.forEach(link => {
 // Update active nav on scroll
 function updateActiveNav() {
     let current = '';
-    const scrollPosition = window.pageYOffset + 200; // Offset for header
+    const scrollPosition = window.pageYOffset;
+    const viewportHeight = window.innerHeight;
+    const scrollCenter = scrollPosition + (viewportHeight / 2); // Use viewport center for better detection
     
-    sections.forEach(section => {
+    // Sort sections by their position
+    const sortedSections = Array.from(sections).sort((a, b) => a.offsetTop - b.offsetTop);
+    
+    // Find which section we're currently in
+    for (let i = 0; i < sortedSections.length; i++) {
+        const section = sortedSections[i];
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
+        const sectionBottom = sectionTop + sectionHeight;
         
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
+        // Check if we've passed this section's top
+        if (scrollCenter >= sectionTop) {
+            // If this is the last section, or we haven't reached the next section yet
+            if (i === sortedSections.length - 1 || scrollCenter < sortedSections[i + 1].offsetTop) {
+                current = section.getAttribute('id');
+                break;
+            }
         }
-    });
+    }
+    
+    // If we're at the very top, default to first section
+    if (!current && sortedSections.length > 0 && scrollPosition < sortedSections[0].offsetTop) {
+        current = sortedSections[0].getAttribute('id');
+    }
     
     navLinks.forEach(link => {
         link.classList.remove('active');
@@ -42,6 +65,8 @@ function updateActiveNav() {
 }
 
 window.addEventListener('scroll', updateActiveNav);
+// Update on page load to set initial active state
+updateActiveNav();
 
 // Logic for top chevron - appears when scrolled to contact section, scrolls to top when clicked
 const topChevron = document.getElementById('topChevron');
@@ -78,7 +103,12 @@ const roleText = document.getElementById('roleText');
 const roles = ['Aspiring Software Engineer', 'Team Member', 'Fast Learner', 'Critical Thinker'];
 let currentRoleIndex = 0;
 
+/**
+ * Switch to the next role text with fade animation
+ */
 function switchRole() {
+    if (!roleText) return;
+    
     roleText.style.opacity = '0';
     
     setTimeout(() => {
@@ -93,7 +123,7 @@ if (roleText) {
     setInterval(switchRole, 3000); // Switch every 3 seconds
 }
 
-// White circle glow that follows cursor
+// Custom cursor glow that follows mouse
 const cursorGlow = document.querySelector('.custom-cursor');
 
 if (cursorGlow) {
@@ -103,16 +133,17 @@ if (cursorGlow) {
     });
 }
 
-// Scroll animations for project cards and all boxes
+// Scroll animations for project cards and content boxes
 const projectCards = document.querySelectorAll('.project-card');
 const allBoxes = document.querySelectorAll('.education-timeline-box, .experience-timeline-box, .about-box');
 
-if (projectCards.length > 0) {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
 
+// Animate project cards on scroll
+if (projectCards.length > 0) {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -130,13 +161,8 @@ if (projectCards.length > 0) {
     });
 }
 
-// Apply same animation to all boxes
+// Animate content boxes on scroll
 if (allBoxes.length > 0) {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-
     const boxObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -152,37 +178,49 @@ if (allBoxes.length > 0) {
     });
 }
 
-// Scroll animations for timeline items
-const timelineItems = document.querySelectorAll('.timeline-item');
-
-if (timelineItems.length > 0) {
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const timelineObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                entry.target.classList.remove('hidden');
-            } else {
-                entry.target.classList.add('hidden');
-                entry.target.classList.remove('visible');
-            }
-        });
-    }, observerOptions);
-
-    timelineItems.forEach(item => {
-        timelineObserver.observe(item);
-    });
-}
-
-// Timeline line progress animation on scroll
+// Timeline progress animation and entry visibility
 const timelineSection = document.querySelector('.experience-timeline');
 const timelineProgress = document.getElementById('timelineProgress');
+const timelineItems = document.querySelectorAll('.timeline-item');
 
 if (timelineSection && timelineProgress) {
+    // Calculate each timeline item's position relative to the timeline
+    function calculateItemPositions() {
+        const timelineHeight = timelineSection.scrollHeight;
+        
+        const itemPositions = [];
+        timelineItems.forEach((item) => {
+            const icon = item.querySelector('.timeline-icon');
+            if (icon) {
+                // Calculate position relative to timeline section
+                let itemTop = 0;
+                let currentElement = item;
+                
+                // Traverse up to find position relative to timeline
+                while (currentElement && currentElement !== timelineSection) {
+                    itemTop += currentElement.offsetTop;
+                    currentElement = currentElement.offsetParent;
+                    // Safety check to avoid infinite loop
+                    if (!currentElement || currentElement === document.body) break;
+                }
+                
+                const iconPercentage = (itemTop / timelineHeight) * 100;
+                
+                itemPositions.push({
+                    item: item,
+                    percentage: Math.max(0, Math.min(100, iconPercentage))
+                });
+            }
+        });
+        
+        // Sort by percentage to ensure correct order
+        itemPositions.sort((a, b) => a.percentage - b.percentage);
+        
+        return itemPositions;
+    }
+    
+    let itemPositions = [];
+    
     function updateTimelineProgress() {
         const timelineRect = timelineSection.getBoundingClientRect();
         const timelineTop = timelineRect.top + window.scrollY;
@@ -211,7 +249,30 @@ if (timelineSection && timelineProgress) {
         
         // Update the progress line height
         timelineProgress.style.height = progress + '%';
+        
+        // Update item visibility based on scroll progress
+        if (itemPositions.length === 0) {
+            itemPositions = calculateItemPositions();
+        }
+        
+        itemPositions.forEach(({ item, percentage }) => {
+            const timelineContent = item.querySelector('.timeline-content');
+            if (timelineContent) {
+                // Show content when scroll progress reaches the item's position
+                if (progress >= percentage) {
+                    timelineContent.classList.add('visible');
+                } else {
+                    timelineContent.classList.remove('visible');
+                }
+            }
+        });
     }
+    
+    // Recalculate positions on resize
+    window.addEventListener('resize', () => {
+        itemPositions = [];
+        updateTimelineProgress();
+    });
     
     // Update on scroll
     window.addEventListener('scroll', updateTimelineProgress);
