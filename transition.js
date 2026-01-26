@@ -105,7 +105,7 @@ if (cursorGlow) {
 
 // Scroll animations for project cards and all boxes
 const projectCards = document.querySelectorAll('.project-card');
-const allBoxes = document.querySelectorAll('.experience-timeline-box, .education-timeline-box, .skills-box, .about-box');
+const allBoxes = document.querySelectorAll('.education-timeline-box, .experience-timeline-box, .about-box');
 
 if (projectCards.length > 0) {
     const observerOptions = {
@@ -150,5 +150,73 @@ if (allBoxes.length > 0) {
     allBoxes.forEach(box => {
         boxObserver.observe(box);
     });
+}
+
+// Scroll animations for timeline items
+const timelineItems = document.querySelectorAll('.timeline-item');
+
+if (timelineItems.length > 0) {
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                entry.target.classList.remove('hidden');
+            } else {
+                entry.target.classList.add('hidden');
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, observerOptions);
+
+    timelineItems.forEach(item => {
+        timelineObserver.observe(item);
+    });
+}
+
+// Timeline line progress animation on scroll
+const timelineSection = document.querySelector('.experience-timeline');
+const timelineProgress = document.getElementById('timelineProgress');
+
+if (timelineSection && timelineProgress) {
+    function updateTimelineProgress() {
+        const timelineRect = timelineSection.getBoundingClientRect();
+        const timelineTop = timelineRect.top + window.scrollY;
+        const timelineHeight = timelineSection.scrollHeight;
+        const viewportHeight = window.innerHeight;
+        
+        // Calculate scroll progress using the center of the viewport
+        const viewportCenter = window.scrollY + (viewportHeight / 2);
+        const timelineBottom = timelineTop + timelineHeight;
+        
+        // Calculate how much of the timeline is visible/passed
+        let progress = 0;
+        
+        if (viewportCenter >= timelineTop) {
+            if (viewportCenter >= timelineBottom) {
+                progress = 100; // Fully scrolled past
+            } else {
+                // Calculate percentage based on how far the center has scrolled through the timeline
+                const scrolled = viewportCenter - timelineTop;
+                progress = (scrolled / timelineHeight) * 100;
+            }
+        }
+        
+        // Clamp progress between 0 and 100
+        progress = Math.max(0, Math.min(100, progress));
+        
+        // Update the progress line height
+        timelineProgress.style.height = progress + '%';
+    }
+    
+    // Update on scroll
+    window.addEventListener('scroll', updateTimelineProgress);
+    
+    // Update on load
+    updateTimelineProgress();
 }
  

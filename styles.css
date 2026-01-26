@@ -1284,7 +1284,33 @@ body.experience-page nav a.active{
     top: 0;
     bottom: 0;
     width: 2px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.experience-timeline-progress{
+    content: '';
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    width: 2px;
     background-color: white;
+    height: 0%;
+    transition: height 0.1s ease-out;
+    z-index: 0;
+}
+
+.experience-timeline::after{
+    content: '';
+    position: absolute;
+    left: calc(2rem + 1px);
+    bottom: -0.5rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: white;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transform: translateX(-50%);
 }
 
 .timeline-item{
@@ -1293,10 +1319,23 @@ body.experience-page nav a.active{
     display: flex;
     align-items: flex-start;
     gap: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .timeline-item:last-child{
     margin-bottom: 0;
+}
+
+.timeline-item.visible{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item.hidden{
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 .timeline-icon{
@@ -1314,6 +1353,19 @@ body.experience-page nav a.active{
     z-index: 2;
     border: 3px solid white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.college-logo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.timeline-icon img[src*="Aramark"]{
+    object-fit: contain;
+    padding: 0.3rem;
 }
 
 .timeline-content{
@@ -1347,6 +1399,18 @@ body.experience-page nav a.active{
     line-height: 1.7;
     color: white;
     margin: 0;
+    opacity: 0.9;
+}
+
+.timeline-description ul{
+    margin: 0.5rem 0 0 0;
+    padding-left: 2rem;
+    list-style-type: disc;
+}
+
+.timeline-description li{
+    margin: 0.5rem 0;
+    color: white;
     opacity: 0.9;
 }
 
@@ -1409,28 +1473,12 @@ body.experience-page nav a.active{
     position: relative;
 }
 
-.skills-box{
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 4rem;
-    border: 1px solid rgba(138, 130, 255, 0.2);
-    box-shadow: 0 8px 24px rgba(138, 130, 255, 0.2);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    opacity: 0;
-    transform: translateY(50px);
-}
-
-.skills-box.visible{
-    opacity: 1;
-    transform: translateY(0);
-}
 
 .skills-title{
     font-size: 3.5rem;
     color: #8A82FF;
     font-weight: 600;
-    margin: 0 0 3rem 0;
+    margin: 3rem 0 3rem 0;
 }
 
 .skills-scroll-container{
@@ -1680,6 +1728,17 @@ body.experience-page nav a.active{
         left: 1.5rem;
     }
     
+    .experience-timeline-progress{
+        left: 1.5rem;
+    }
+    
+    .experience-timeline::after{
+        left: calc(1.5rem + 1px);
+        width: 0.75rem;
+        height: 0.75rem;
+        transform: translateX(-50%);
+    }
+    
     .timeline-icon{
         left: -3rem;
         width: 3rem;
@@ -1707,6 +1766,14 @@ body.experience-page nav a.active{
         font-size: 1.3rem;
     }
     
+    .timeline-description ul{
+        padding-left: 1.5rem;
+    }
+    
+    .timeline-description li{
+        margin: 0.4rem 0;
+    }
+    
     .education-timeline-section{
         padding: 2rem 5% 2rem;
     }
@@ -1730,10 +1797,6 @@ body.experience-page nav a.active{
     
     .skills-section{
         padding: 2rem 5% 2rem;
-    }
-    
-    .skills-box{
-        padding: 2rem;
     }
     
     .skills-title{
