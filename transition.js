@@ -290,10 +290,21 @@ if (heroGrid && heroSection) {
     let rows = 0;
     let cells = [];
     let animationFrame = null;
+    let isMobile = window.innerWidth <= 768;
+    let lastUpdateTime = 0;
+    const mobileThrottle = 33; // ~30fps on mobile for better performance
+    
+    // Detect mobile device
+    function detectMobile() {
+        isMobile = window.innerWidth <= 768 || 
+                   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        return isMobile;
+    }
     
     // Calculate grid dimensions based on viewport
     function createGrid() {
-        const cellSize = window.innerWidth <= 768 ? 60 : 80;
+        detectMobile();
+        const cellSize = isMobile ? 60 : 80;
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
         
@@ -320,20 +331,36 @@ if (heroGrid && heroSection) {
     // Create grid on load
     createGrid();
     
-    // Recreate grid on resize
+    // Recreate grid on resize and orientation change
     let resizeTimeout;
-    window.addEventListener('resize', () => {
+    function handleResize() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             createGrid();
             startAnimation();
         }, 250);
+    }
+    
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', () => {
+        setTimeout(handleResize, 100);
     });
     
     // Animate grid with wave effect
     let time = 0;
-    function animateGrid() {
-        time += 0.02;
+    function animateGrid(currentTime) {
+        // Throttle animation on mobile for better performance
+        if (isMobile) {
+            if (currentTime - lastUpdateTime < mobileThrottle) {
+                animationFrame = requestAnimationFrame(animateGrid);
+                return;
+            }
+            lastUpdateTime = currentTime;
+        }
+        
+        // Adjust animation speed based on device
+        const speedMultiplier = isMobile ? 0.015 : 0.02;
+        time += speedMultiplier;
         
         cells.forEach((cell, index) => {
             const row = Math.floor(index / cols);
@@ -345,22 +372,35 @@ if (heroGrid && heroSection) {
                 Math.pow(row - rows / 2, 2)
             );
             
-            // Create multiple waves for interesting pattern
-            const wave1 = Math.sin(distance * 0.3 - time * 2) * 0.5 + 0.5;
-            const wave2 = Math.sin(distance * 0.2 - time * 1.5) * 0.5 + 0.5;
-            const wave3 = Math.cos((col + row) * 0.5 - time * 3) * 0.5 + 0.5;
-            
-            // Combine waves for complex pattern
-            const intensity = (wave1 * 0.4 + wave2 * 0.3 + wave3 * 0.3);
-            
-            // Only highlight cells above threshold
-            if (intensity > 0.6) {
-                cell.classList.add('highlighted');
-                // Set opacity based on intensity
-                cell.style.opacity = intensity;
+            // Simplified wave calculation on mobile for better performance
+            if (isMobile) {
+                // Use fewer waves on mobile
+                const wave1 = Math.sin(distance * 0.3 - time * 2) * 0.5 + 0.5;
+                const wave2 = Math.cos((col + row) * 0.5 - time * 3) * 0.5 + 0.5;
+                const intensity = (wave1 * 0.6 + wave2 * 0.4);
+                
+                if (intensity > 0.6) {
+                    cell.classList.add('highlighted');
+                    cell.style.opacity = intensity;
+                } else {
+                    cell.classList.remove('highlighted');
+                    cell.style.opacity = '';
+                }
             } else {
-                cell.classList.remove('highlighted');
-                cell.style.opacity = '';
+                // Full animation on desktop
+                const wave1 = Math.sin(distance * 0.3 - time * 2) * 0.5 + 0.5;
+                const wave2 = Math.sin(distance * 0.2 - time * 1.5) * 0.5 + 0.5;
+                const wave3 = Math.cos((col + row) * 0.5 - time * 3) * 0.5 + 0.5;
+                
+                const intensity = (wave1 * 0.4 + wave2 * 0.3 + wave3 * 0.3);
+                
+                if (intensity > 0.6) {
+                    cell.classList.add('highlighted');
+                    cell.style.opacity = intensity;
+                } else {
+                    cell.classList.remove('highlighted');
+                    cell.style.opacity = '';
+                }
             }
         });
         
@@ -371,10 +411,23 @@ if (heroGrid && heroSection) {
         if (animationFrame) {
             cancelAnimationFrame(animationFrame);
         }
-        animateGrid();
+        time = 0;
+        lastUpdateTime = 0;
+        animationFrame = requestAnimationFrame(animateGrid);
     }
     
     // Start animation
     startAnimation();
+    
+    // Pause animation when page is hidden (mobile optimization)
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+        } else {
+            startAnimation();
+        }
+    });
 }
  
