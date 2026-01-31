@@ -280,4 +280,101 @@ if (timelineSection && timelineProgress) {
     // Update on load
     updateTimelineProgress();
 }
+
+// Animated grid for hero section
+const heroGrid = document.getElementById('heroGrid');
+const heroSection = document.querySelector('.hero');
+
+if (heroGrid && heroSection) {
+    let cols = 0;
+    let rows = 0;
+    let cells = [];
+    let animationFrame = null;
+    
+    // Calculate grid dimensions based on viewport
+    function createGrid() {
+        const cellSize = window.innerWidth <= 768 ? 60 : 80;
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        
+        cols = Math.ceil(viewportWidth / cellSize);
+        rows = Math.ceil(viewportHeight / cellSize);
+        
+        // Clear existing cells
+        heroGrid.innerHTML = '';
+        cells = [];
+        
+        // Create grid cells
+        for (let i = 0; i < rows * cols; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'hero-grid-cell';
+            heroGrid.appendChild(cell);
+            cells.push(cell);
+        }
+        
+        // Update grid template
+        heroGrid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+        heroGrid.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+    }
+    
+    // Create grid on load
+    createGrid();
+    
+    // Recreate grid on resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            createGrid();
+            startAnimation();
+        }, 250);
+    });
+    
+    // Animate grid with wave effect
+    let time = 0;
+    function animateGrid() {
+        time += 0.02;
+        
+        cells.forEach((cell, index) => {
+            const row = Math.floor(index / cols);
+            const col = index % cols;
+            
+            // Create wave effect that moves across the grid
+            const distance = Math.sqrt(
+                Math.pow(col - cols / 2, 2) + 
+                Math.pow(row - rows / 2, 2)
+            );
+            
+            // Create multiple waves for interesting pattern
+            const wave1 = Math.sin(distance * 0.3 - time * 2) * 0.5 + 0.5;
+            const wave2 = Math.sin(distance * 0.2 - time * 1.5) * 0.5 + 0.5;
+            const wave3 = Math.cos((col + row) * 0.5 - time * 3) * 0.5 + 0.5;
+            
+            // Combine waves for complex pattern
+            const intensity = (wave1 * 0.4 + wave2 * 0.3 + wave3 * 0.3);
+            
+            // Only highlight cells above threshold
+            if (intensity > 0.6) {
+                cell.classList.add('highlighted');
+                // Set opacity based on intensity
+                cell.style.opacity = intensity;
+            } else {
+                cell.classList.remove('highlighted');
+                cell.style.opacity = '';
+            }
+        });
+        
+        animationFrame = requestAnimationFrame(animateGrid);
+    }
+    
+    function startAnimation() {
+        if (animationFrame) {
+            cancelAnimationFrame(animationFrame);
+        }
+        animateGrid();
+    }
+    
+    // Start animation
+    startAnimation();
+}
  
