@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon/jk-favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <title>Portfolio Website</title>
+    <title>Portfolio - Joseph Kimbrough</title>
 </head>
 <body class="home-page">
     <div class="custom-cursor"></div>
@@ -36,6 +37,7 @@
     
     <!-- Home Section -->
     <section id="home" class="hero">
+        <div class="hero-grid" id="heroGrid"></div>
         <div class="hero-content">
             <div class="hero-photo-container">
                 <img src="photoOfMe/IMG_6857.jpg" alt="Joseph Kimbrough" class="hero-photo">
@@ -47,7 +49,7 @@
             </div>
             <div class="hero-buttons">
                 <a href="#myworks" class="hero-btn btn-projects">View Projects</a>
-                <a href="resumeUpload/Resume - Joseph Kimbrough.docx.pdf" download class="hero-btn btn-resume">Download Resume</a>
+                <a href="resumeUpload/Resume - Joseph Kimbrough.docx.pdf" download="Resume - Joseph Kimbrough.docx.pdf" class="hero-btn btn-resume" id="downloadResumeBtn">Download Resume</a>
             </div>
             <div class="hero-social-links">
                 <a href="https://github.com/JoeKimbro" target="_blank" aria-label="GitHub Profile" class="hero-social-link">
@@ -343,7 +345,7 @@
             <button class="resume-modal-close" id="closeResumeModal">
                 <i class="fas fa-times"></i>
             </button>
-            <iframe class="resume-modal-pdf" src="resumeUpload/Resume - Joseph Kimbrough.docx.pdf" type="application/pdf"></iframe>
+            <iframe class="resume-modal-pdf" src="resumeUpload/Resume - Joseph Kimbrough.docx.pdf"></iframe>
         </div>
     </div>
 
