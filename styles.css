@@ -482,6 +482,12 @@ body.experience-page .about-indicator i {
     border: 1px solid var(--color-error-border);
 }
 
+.project-status.in-progress {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #FFC107;
+    border: 1px solid rgba(255, 193, 7, 0.4);
+}
+
 .project-link-btn {
     display: inline-flex;
     align-items: center;
@@ -922,6 +928,101 @@ body.experience-page .about-indicator i {
 }
 
 .project-card-description b {
+    font-weight: var(--font-weight-semibold);
+}
+
+.project-card-details {
+    margin: 0;
+}
+
+.project-card-readmore {
+    font-size: var(--font-size-sm);
+    color: var(--color-primary);
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-fast);
+    user-select: none;
+}
+
+.project-card-readmore::-webkit-details-marker {
+    display: none;
+}
+
+.project-card-readmore::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 1rem;
+    transition: transform var(--transition-base);
+}
+
+.project-card-details[open] .project-card-readmore::after {
+    transform: rotate(180deg);
+}
+
+.project-card-readmore:hover {
+    color: var(--color-primary-dark);
+}
+
+.project-card-details[open] .project-card-readmore {
+    margin-bottom: 1.2rem;
+}
+
+.project-card-full-description {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    animation: expandDescription 0.3s ease;
+}
+
+.project-card-full-description p {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-base);
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+@keyframes expandDescription {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project-card-highlights {
+    margin: 0;
+}
+
+.project-card-highlights ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.project-card-highlights li {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-secondary);
+    padding-left: 1.6rem;
+    position: relative;
+}
+
+.project-card-highlights li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
     font-weight: var(--font-weight-semibold);
 }
 

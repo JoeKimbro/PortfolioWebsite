@@ -107,19 +107,36 @@
 
         <div class="project-card">
             <div class="project-card-image">
-                <video class="project-video" muted loop autoplay playsinline data-video-src="myWorksVideos/your-video-name.mov">
-                    <source src="myWorksVideos/your-video-name.mov" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <img class="project-video" src="DelphiAI.png" alt="DelphiAI UFC Fight Prediction Platform">
             </div>
             <div class="project-card-content">
                 <h2 class="project-card-title">DelphiAI</h2>
-                <p class="project-card-description">Speak your Sports Betting questions and let the Oracle of Delphi guide you to the right decision on your next bet.</p>
+                <p class="project-card-description">A full-stack UFC fight prediction platform combining statistical modeling, machine learning, and a custom ELO system to forecast MMA bout outcomes with 68.6% accuracy.</p>
+                <details class="project-card-details">
+                    <summary class="project-card-readmore">Read More</summary>
+                    <div class="project-card-full-description">
+                        <p>DelphiAI is a full-stack UFC fight prediction platform built in Python that combines statistical modeling and machine learning to forecast MMA bout outcomes. The system maintains a comprehensive PostgreSQL database of fighter profiles, career statistics, and historical fight records, and computes a FiveThirtyEight-style ELO rating system enhanced with style matchup modifiers, reach differentials, age curves, and recent form momentum. An XGBoost classifier trained on historical fight data — with full data augmentation to eliminate positional bias and isotonic calibration for accurate probability estimates — is blended with ELO-derived probabilities to produce per-fight win probabilities, method-of-victory breakdowns (KO/TKO, submission, decision), and round-by-round finish predictions. The platform supports full event card predictions, automated result tracking, and a rigorous backtesting framework with point-in-time statistics and historical ELO snapshots to prevent data leakage. A market inefficiency analyzer identifies potential edges over Vegas lines by detecting public bias, recency bias, and style mismatch mispricing. Built on an MVC architecture with FastAPI, the system is designed for production use with Docker-managed infrastructure and CLI tooling for every workflow.</p>
+                        <div class="project-card-highlights">
+                            <ul>
+                                <li>68.6% accuracy on a 220-fight out-of-sample backtest across all 2025 UFC events, with 100% accuracy on high-confidence picks and a +7.0% paper trading ROI</li>
+                                <li>Custom ELO rating system with style, reach, age, and momentum modifiers applied to 4,000+ UFC fighters</li>
+                                <li>XGBoost model with isotonic probability calibration and full data augmentation to eliminate training bias</li>
+                                <li>Comprehensive data pipeline ingesting fighter profiles, career statistics, and fight records into PostgreSQL with fuzzy name matching</li>
+                                <li>End-to-end prediction tracking system with per-event performance reports, confidence-tiered accuracy breakdowns, and cumulative ROI analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
                 <div class="project-card-tech">
-                    <span class="tech-tag">In Progress</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">XGBoost</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">scikit-learn</span>
                 </div>
                 <div class="project-card-footer">
-                    <span class="project-status active">Active</span>
+                    <span class="project-status in-progress">In Progress</span>
                 </div>
             </div>
         </div>
