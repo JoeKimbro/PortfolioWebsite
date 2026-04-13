@@ -143,6 +143,43 @@
                 </div>
             </div>
         </div>
+
+        <div class="project-card">
+            <div class="project-card-image">
+                <img class="project-video" src="dashboard.png" alt="Command Center Dashboard">
+            </div>
+            <div class="project-card-content">
+                <h2 class="project-card-title">Command Center Dashboard</h2>
+                <p class="project-card-description">A real-time, single-page dashboard designed to run as an always-on TV display or kiosk. Features a drag-and-drop 4-slot grid where modules can be freely arranged, with layout persisted across sessions.</p>
+                <details class="project-card-details">
+                    <summary class="project-card-readmore">Read More</summary>
+                    <div class="project-card-full-description">
+                        <p>A real-time dashboard built as a single self-contained HTML file with no framework and no build step. The interface features a drag-and-drop 4-slot grid powered by the HTML5 Drag and Drop API, with slot state serialized to localStorage. Implements Google OAuth 2.0 entirely in the browser — no backend — with token caching, expiry tracking, and silent refresh. Live market data is embedded via TradingView chart widgets; news is pulled from 6 RSS feeds through a CORS proxy with client-side deduplication by title hash. Weather comes from the Open-Meteo API (no key required). An auto light/dark theme switches at 6 AM / 6 PM using CSS custom properties. Deployed on a Raspberry Pi as a systemd user service with optional Chromium kiosk autostart for headless TV operation.</p>
+                        <div class="project-card-highlights">
+                            <ul>
+                                <li>Zero runtime dependencies — ships as one HTML file, no React, no Vue, no bundler</li>
+                                <li>Google Calendar integration via browser-only OAuth 2.0 token flow with silent token refresh</li>
+                                <li>Drag-and-drop layout engine built from scratch using the HTML5 Drag and Drop API</li>
+                                <li>Live S&P 500 market data (SPX, SPY, DIA, QQQ, IWM, VTI, XLF) via embedded TradingView widgets</li>
+                                <li>Raspberry Pi deployment with systemd service, daily on/off schedule timers, and Chromium kiosk mode</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+                <div class="project-card-tech">
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Google OAuth 2.0</span>
+                    <span class="tech-tag">REST APIs</span>
+                    <span class="tech-tag">Raspberry Pi</span>
+                </div>
+                <div class="project-card-footer">
+                    <span class="project-status in-progress">Live</span>
+                    <a href="https://github.com/JoeKimbro/Daily-Dashboard-for-TV" target="_blank" class="project-link-btn">Link <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
 

@@ -36,3 +36,6 @@ yarn-error.log*
 # OS files
 Thumbs.db
 desktop.ini
+
+# Claude files
+claude.md
